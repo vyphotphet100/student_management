@@ -123,6 +123,7 @@ namespace StudentManagement.MapperUtils
 
         private void SetCourseDTO(JObject json, ref CourseDTO courseDto)
         {
+            try { courseDto.CourseId = (String)json["courseId"]; } catch { }
             try { courseDto.Label = (String)json["label"]; } catch { }
             try { courseDto.Period = (int)json["period"]; } catch { }
             try { courseDto.Description = (String)json["description"]; } catch { }

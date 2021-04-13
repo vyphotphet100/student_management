@@ -23,17 +23,17 @@ namespace StudentManagement
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //if (!verify())
-            //    return;
+            if (!verify())
+                return;
 
             String url = "http://localhost:8081/api/course";
 
             var data = new Dictionary<String, Object>
             {
-                { "id", txbCourseID.Text },
+                { "courseId", txbCourseID.Text },
                 { "label", txbLabel.Text },
                 { "period", txbPeriod.Text },
-                { "description", txbDesciption.Text }
+                { "description", txbDescription.Text }
             };
             JObject jObject = HttpUtils.PostRequest(url, Globals.TokenCode, data);
             CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
@@ -42,6 +42,17 @@ namespace StudentManagement
                 lbStatus.Text = courseDto.Message;
             else
                 lbStatus.Text = "Something's wrong.";
+
+        }
+
+        private Boolean verify()
+        {
+            if (txbCourseID.Text.Trim() == "" ||
+                txbLabel.Text.Trim() == "" ||
+                txbPeriod.Text.Trim() == "" ||
+                txbDescription.Text.Trim() == "")
+                return false;
+            return true;
         }
     }
 }

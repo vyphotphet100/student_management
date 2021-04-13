@@ -8,10 +8,17 @@ namespace StudentManagement.DTO
 {
     public class CourseDTO: AbstractDTO<CourseDTO>
     {
+        private String courseId;
         private String label;
         private int period;
         private String description;
         private List<long> scoreIds = new List<long>();
+
+        public String CourseId
+        {
+            get { return this.courseId; }
+            set { this.courseId = value; }
+        }
 
         public String Label
         {

@@ -95,6 +95,18 @@
     <Compile Include="Form\FrmAddCourse.Designer.cs">
       <DependentUpon>FrmAddCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\FrmRemoveCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmRemoveCourse.Designer.cs">
+      <DependentUpon>FrmRemoveCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FrmEditCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FrmEditCourse.Designer.cs">
+      <DependentUpon>FrmEditCourse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Form\FrmAddStudent.cs">
       <SubType>Form</SubType>
@@ -143,6 +155,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FrmAddCourse.resx">
       <DependentUpon>FrmAddCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmRemoveCourse.resx">
+      <DependentUpon>FrmRemoveCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FrmEditCourse.resx">
+      <DependentUpon>FrmEditCourse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

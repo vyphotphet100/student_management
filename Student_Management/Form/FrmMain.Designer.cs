@@ -172,12 +172,14 @@
             this.removeCourseToolStripMenuItem.Name = "removeCourseToolStripMenuItem";
             this.removeCourseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeCourseToolStripMenuItem.Text = "Remove course";
+            this.removeCourseToolStripMenuItem.Click += new System.EventHandler(this.removeCourseToolStripMenuItem_Click);
             // 
             // editCourseToolStripMenuItem
             // 
             this.editCourseToolStripMenuItem.Name = "editCourseToolStripMenuItem";
             this.editCourseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editCourseToolStripMenuItem.Text = "Edit course";
+            this.editCourseToolStripMenuItem.Click += new System.EventHandler(this.editCourseToolStripMenuItem_Click);
             // 
             // manageCoursesToolStripMenuItem
             // 

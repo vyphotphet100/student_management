@@ -45,5 +45,17 @@ namespace StudentManagement
             FrmAddCourse frmAddCourse = new FrmAddCourse();
             frmAddCourse.ShowDialog(this);
         }
+
+        private void removeCourseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmRemoveCourse frmRemoveCourse = new FrmRemoveCourse();
+            frmRemoveCourse.ShowDialog(this);
+        }
+
+        private void editCourseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmEditCourse frmEditCourse = new FrmEditCourse();
+            frmEditCourse.ShowDialog(this);
+        }
     }
 }
