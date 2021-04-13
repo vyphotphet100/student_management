@@ -39,5 +39,11 @@ namespace StudentManagement
             FrmStatistics frmStatistics = new FrmStatistics();
             frmStatistics.ShowDialog(this);
         }
+
+        private void addCourseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAddCourse frmAddCourse = new FrmAddCourse();
+            frmAddCourse.ShowDialog(this);
+        }
     }
 }

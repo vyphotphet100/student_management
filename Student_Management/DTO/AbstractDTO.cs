@@ -92,5 +92,19 @@ namespace StudentManagement.DTO
             studentDto.HttpStatus = this.httpStatus;
             return studentDto;
         }
+
+        public CourseDTO ToCourseDTO()
+        {
+            CourseDTO courseDto = new CourseDTO();
+            courseDto.Id = this.id;
+            courseDto.CreatedDate = this.createdDate;
+            courseDto.CreatedBy = this.createdBy;
+            courseDto.ModifiedBy = this.modifiedBy;
+            courseDto.ModifiedDate = this.modifiedDate;
+            courseDto.ListResult = this.listResult;
+            courseDto.Message = this.message;
+            courseDto.HttpStatus = this.httpStatus;
+            return courseDto;
+        }
     }
 }
