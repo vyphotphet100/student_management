@@ -42,6 +42,11 @@
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeCourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editCourseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageCoursesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -145,6 +150,12 @@
             // 
             // toolStripMenuItem2
             // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addCourseToolStripMenuItem,
+            this.removeCourseToolStripMenuItem,
+            this.editCourseToolStripMenuItem,
+            this.manageCoursesToolStripMenuItem,
+            this.printToolStripMenuItem1});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(63, 20);
             this.toolStripMenuItem2.Text = "COURSE";
@@ -154,6 +165,36 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(55, 20);
             this.toolStripMenuItem3.Text = "SCORE";
+            // 
+            // addCourseToolStripMenuItem
+            // 
+            this.addCourseToolStripMenuItem.Name = "addCourseToolStripMenuItem";
+            this.addCourseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addCourseToolStripMenuItem.Text = "Add course";
+            // 
+            // removeCourseToolStripMenuItem
+            // 
+            this.removeCourseToolStripMenuItem.Name = "removeCourseToolStripMenuItem";
+            this.removeCourseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.removeCourseToolStripMenuItem.Text = "Remove course";
+            // 
+            // editCourseToolStripMenuItem
+            // 
+            this.editCourseToolStripMenuItem.Name = "editCourseToolStripMenuItem";
+            this.editCourseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editCourseToolStripMenuItem.Text = "Edit course";
+            // 
+            // manageCoursesToolStripMenuItem
+            // 
+            this.manageCoursesToolStripMenuItem.Name = "manageCoursesToolStripMenuItem";
+            this.manageCoursesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageCoursesToolStripMenuItem.Text = "Manage courses";
+            // 
+            // printToolStripMenuItem1
+            // 
+            this.printToolStripMenuItem1.Name = "printToolStripMenuItem1";
+            this.printToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.printToolStripMenuItem1.Text = "Print";
             // 
             // FrmMain
             // 
@@ -192,5 +233,10 @@
         private System.Windows.Forms.ToolStripMenuItem editRemoveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem studentManagementFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addCourseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeCourseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editCourseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageCoursesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem1;
     }
 }
