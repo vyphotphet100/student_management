@@ -40,6 +40,8 @@
             this.txbLname = new System.Windows.Forms.TextBox();
             this.datmBirthday = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rBtnFemale = new System.Windows.Forms.RadioButton();
+            this.rBtnMale = new System.Windows.Forms.RadioButton();
             this.txbPhone = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txbAddress = new System.Windows.Forms.TextBox();
@@ -48,8 +50,6 @@
             this.btnUploadImage = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.rBtnMale = new System.Windows.Forms.RadioButton();
-            this.rBtnFemale = new System.Windows.Forms.RadioButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbStatus = new System.Windows.Forms.ToolStripStatusLabel();
@@ -160,6 +160,28 @@
             this.panel1.Size = new System.Drawing.Size(200, 24);
             this.panel1.TabIndex = 4;
             // 
+            // rBtnFemale
+            // 
+            this.rBtnFemale.AutoSize = true;
+            this.rBtnFemale.Location = new System.Drawing.Point(110, 3);
+            this.rBtnFemale.Name = "rBtnFemale";
+            this.rBtnFemale.Size = new System.Drawing.Size(59, 17);
+            this.rBtnFemale.TabIndex = 6;
+            this.rBtnFemale.TabStop = true;
+            this.rBtnFemale.Text = "Female";
+            this.rBtnFemale.UseVisualStyleBackColor = true;
+            // 
+            // rBtnMale
+            // 
+            this.rBtnMale.AutoSize = true;
+            this.rBtnMale.Location = new System.Drawing.Point(30, 3);
+            this.rBtnMale.Name = "rBtnMale";
+            this.rBtnMale.Size = new System.Drawing.Size(48, 17);
+            this.rBtnMale.TabIndex = 6;
+            this.rBtnMale.TabStop = true;
+            this.rBtnMale.Text = "Male";
+            this.rBtnMale.UseVisualStyleBackColor = true;
+            // 
             // txbPhone
             // 
             this.txbPhone.Location = new System.Drawing.Point(101, 146);
@@ -233,28 +255,6 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // rBtnMale
-            // 
-            this.rBtnMale.AutoSize = true;
-            this.rBtnMale.Location = new System.Drawing.Point(30, 3);
-            this.rBtnMale.Name = "rBtnMale";
-            this.rBtnMale.Size = new System.Drawing.Size(48, 17);
-            this.rBtnMale.TabIndex = 6;
-            this.rBtnMale.TabStop = true;
-            this.rBtnMale.Text = "Male";
-            this.rBtnMale.UseVisualStyleBackColor = true;
-            // 
-            // rBtnFemale
-            // 
-            this.rBtnFemale.AutoSize = true;
-            this.rBtnFemale.Location = new System.Drawing.Point(110, 3);
-            this.rBtnFemale.Name = "rBtnFemale";
-            this.rBtnFemale.Size = new System.Drawing.Size(59, 17);
-            this.rBtnFemale.TabIndex = 6;
-            this.rBtnFemale.TabStop = true;
-            this.rBtnFemale.Text = "Female";
-            this.rBtnFemale.UseVisualStyleBackColor = true;
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -327,8 +327,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txbId;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -354,5 +352,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lbStatus;
         private System.Windows.Forms.Label label9;
+        public System.Windows.Forms.TextBox txbId;
     }
 }

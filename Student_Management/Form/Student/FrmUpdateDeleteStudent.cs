@@ -23,12 +23,18 @@ namespace StudentManagement
         public FrmUpdateDeleteStudent(String studentId)
         {
             InitializeComponent();
-            txbId.Text = studentId;
-            btnFind_Click( new object(), new EventArgs());
+            if (studentId != "0")
+            {
+                txbId.Text = studentId;
+                btnFind_Click(new object(), new EventArgs());
+            }
         }
 
         private void btnFind_Click(object sender, EventArgs e)
         {
+            if (txbId.Text.Trim() == "")
+                return;
+
             txbId.ReadOnly = true;
             JObject jObject = HttpUtils.GetRequest("http://localhost:8081/api/student/" + txbId.Text, Globals.TokenCode, null);
             StudentDTO studentDto = DTOMapper.GetInstance().Map<StudentDTO>(jObject);

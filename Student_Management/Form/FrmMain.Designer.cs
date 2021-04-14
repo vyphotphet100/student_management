@@ -134,6 +134,7 @@
             this.editRemoveToolStripMenuItem.Name = "editRemoveToolStripMenuItem";
             this.editRemoveToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.editRemoveToolStripMenuItem.Text = "Edit/Remove";
+            this.editRemoveToolStripMenuItem.Click += new System.EventHandler(this.editRemoveToolStripMenuItem_Click);
             // 
             // studentManagementFormToolStripMenuItem
             // 
@@ -186,6 +187,7 @@
             this.manageCoursesToolStripMenuItem.Name = "manageCoursesToolStripMenuItem";
             this.manageCoursesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.manageCoursesToolStripMenuItem.Text = "Manage courses";
+            this.manageCoursesToolStripMenuItem.Click += new System.EventHandler(this.manageCoursesToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem1
             // 
