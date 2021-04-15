@@ -18,25 +18,13 @@ namespace StudentManagement
 {
     public partial class FrmManageCourse : Form
     {
+        private List<CourseDTO> courseDTOs;
+
         public FrmManageCourse()
         {
             InitializeComponent();
-            btnRefresh_Click(new object(), new EventArgs());
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            dataCourse.Rows.Clear();
-            List<CourseDTO> courseDtos = loadCourse();
-            for (int i = 0; i < courseDtos.Count; i++)
-            {
-                String courseId = courseDtos[i].CourseId;
-                String label = courseDtos[i].Label;
-                int period = courseDtos[i].Period;
-                String description = courseDtos[i].Description;
-
-                dataCourse.Rows.Add(courseId, label, period, description);
-            }
+            courseDTOs = loadCourse();
+            addCourseToLbxCourse(courseDTOs);
         }
 
         private List<CourseDTO> loadCourse()
@@ -59,6 +47,15 @@ namespace StudentManagement
             return lRes;
         }
 
+        private void addCourseToLbxCourse(List<CourseDTO> courseDtos)
+        {
+            lbxCourse.Items.Clear();
+            for (int i = 0; i < courseDtos.Count; i++)
+                lbxCourse.Items.Add(courseDtos[i].Label);
+
+            lbTotalCourse.Text = "Total course(s): " + courseDtos.Count;
+        }
+
         private void btnToPrinter_Click(object sender, EventArgs e)
         {
             ExportDataToWord();
@@ -66,6 +63,7 @@ namespace StudentManagement
 
         private void ExportDataToWord()
         {
+            /*
             if (dataCourse.Rows.Count != 0)
             {
                
@@ -118,6 +116,7 @@ namespace StudentManagement
                     for (var c = 1; c <= table.Columns.Count; c++)
                         table.Cell(r, c).Range.Text = (String)DataArray[r-1, c-1];
 
+                */
                 ////table format
                 ////oRangeTable.Text = oContentTable;
                 //pTable.Format.SpaceAfter = 10f;
@@ -173,7 +172,124 @@ namespace StudentManagement
                 //oDoc.SaveAs2("course.docx");
 
                 //NASSIM LOUCHANI
-            }
+            //}
+        }
+
+        private void lbxCourse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            showData(lbxCourse.SelectedIndex);
+        }
+
+        private void showData (int index)
+        {
+            CourseDTO courseDto = courseDTOs[index];
+
+            txbID.Text = courseDto.CourseId;
+            txbLabel.Text = courseDto.Label;
+            nUDPeriod.Value = courseDto.Period;
+            txbDescription.Text = courseDto.Description;
+        }
+
+        private void btnFirst_Click(object sender, EventArgs e)
+        {
+            lbxCourse.SetSelected(0, true);
+        }
+
+        private void btnPrevious_Click(object sender, EventArgs e)
+        {
+            if (lbxCourse.SelectedIndex != 0)
+                lbxCourse.SetSelected(lbxCourse.SelectedIndex -1, true);
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (lbxCourse.SelectedIndex != courseDTOs.Count-1)
+                lbxCourse.SetSelected(lbxCourse.SelectedIndex + 1, true);
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            lbxCourse.SetSelected(courseDTOs.Count - 1, true);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (!verify())
+                return;
+
+            String url = "http://localhost:8081/api/course";
+
+            var data = new Dictionary<String, Object>
+            {
+                { "courseId", txbID.Text },
+                { "label", txbLabel.Text },
+                { "period", nUDPeriod.Value },
+                { "description", txbDescription.Text }
+            };
+            JObject jObject = HttpUtils.PostRequest(url, Globals.TokenCode, data);
+            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+
+            if (courseDto != null)
+                lbStatus.Text = courseDto.Message;
+            else
+                lbStatus.Text = "Something's wrong.";
+
+            courseDTOs = loadCourse();
+            addCourseToLbxCourse(courseDTOs);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (!verify())
+                return;
+
+            String url = "http://localhost:8081/api/course";
+
+            var data = new Dictionary<String, Object>
+            {
+                { "courseId", txbID.Text },
+                { "label", txbLabel.Text },
+                { "period", nUDPeriod.Text },
+                { "description", txbDescription.Text }
+            };
+            JObject jObject = HttpUtils.PutRequest(url, Globals.TokenCode, data);
+            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+
+            if (courseDto != null)
+                lbStatus.Text = courseDto.Message;
+            else
+                lbStatus.Text = "Something's wrong.";
+
+            courseDTOs = loadCourse();
+            addCourseToLbxCourse(courseDTOs);
+        }
+
+        private Boolean verify()
+        {
+            if (txbID.Text.Trim() == "" ||
+                txbLabel.Text.Trim() == "" ||
+                txbDescription.Text.Trim() == "")
+                return false;
+            return true;
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (txbID.Text.Trim() == "")
+                return;
+
+            String url = "http://localhost:8081/api/course/" + txbID.Text.Trim();
+
+            JObject jObject = HttpUtils.DeleteRequest(url, Globals.TokenCode, null);
+            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+
+            if (courseDto != null)
+                lbStatus.Text = courseDto.Message;
+            else
+                lbStatus.Text = "Something's wrong.";
+
+            courseDTOs = loadCourse();
+            addCourseToLbxCourse(courseDTOs);
         }
     }
 }

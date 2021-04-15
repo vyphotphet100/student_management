@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace StudentManagement.File
+namespace StudentManagement.MyFile
 {
     public class StudentFile
     {
