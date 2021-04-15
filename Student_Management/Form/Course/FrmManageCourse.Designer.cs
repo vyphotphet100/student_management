@@ -48,6 +48,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.lbxCourse = new System.Windows.Forms.ListBox();
             this.lbTotalCourse = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nUDPeriod)).BeginInit();
             this.SuspendLayout();
@@ -228,11 +229,21 @@
             this.lbTotalCourse.TabIndex = 8;
             this.lbTotalCourse.Text = "Total course(s): 0";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(512, 329);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(135, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "19110143_Cao Đinh Sỹ Vỹ";
+            // 
             // FrmManageCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 364);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lbTotalCourse);
             this.Controls.Add(this.lbxCourse);
             this.Controls.Add(this.btnLast);
@@ -282,5 +293,6 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ListBox lbxCourse;
         private System.Windows.Forms.Label lbTotalCourse;
+        private System.Windows.Forms.Label label5;
     }
 }
