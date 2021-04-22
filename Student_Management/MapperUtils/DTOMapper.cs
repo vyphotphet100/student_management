@@ -73,6 +73,12 @@ namespace StudentManagement.MapperUtils
                 this.SetStudentDTO(json, ref studentDto);
                 dto = (AbstractDTO<T>)((Object)studentDto);
             }
+            else if (typeof(T) == typeof(CourseDTO))
+            {
+                CourseDTO courseDto = dto.ToCourseDTO();
+                this.SetCourseDTO(json, ref courseDto);
+                dto = (AbstractDTO<T>)((Object)courseDto);
+            }
             return (T)((Object)dto);
         }
 
@@ -113,6 +119,28 @@ namespace StudentManagement.MapperUtils
             try { studentDto.Phone = (String)json["phone"]; } catch { }
             try { studentDto.Address = (String)json["address"]; } catch { }
             try { studentDto.Picture = (String)json["picture"]; } catch { }
+        }
+
+        private void SetCourseDTO(JObject json, ref CourseDTO courseDto)
+        {
+            try { courseDto.CourseId = (String)json["courseId"]; } catch { }
+            try { courseDto.Label = (String)json["label"]; } catch { }
+            try { courseDto.Period = (int)json["period"]; } catch { }
+            try { courseDto.Description = (String)json["description"]; } catch { }
+
+            try
+            {
+                List<long> lRes = new List<long>();
+                JArray list = (JArray)json["scoreIds"];
+                for (int i = 0; i < list.Count; i++)
+                {
+                    long scoreId = list[i].ToObject<long>();
+                    lRes.Add(scoreId);
+                }
+
+                courseDto.ScoreIds = lRes;
+            }
+            catch (Exception) { }
         }
     }
 }
