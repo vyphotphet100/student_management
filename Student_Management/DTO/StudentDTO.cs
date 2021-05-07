@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,21 +7,28 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.DTO
 {
-    public class StudentDTO : AbstractDTO<StudentDTO>
+    public class StudentDTO : AbstractDTO
     {
-        private String studentId;
+        private String id;
         private String firstName;
         private String lastName;
+        private String fullname;
+        private String username;
+        private String password;
         private DateTime birthday;
+        private int startYear;
         private String gender;
-        private String phone;
+        private String phoneNumber;
         private String address;
         private String picture;
+        private JArray registerIds;
+        private String roleCode;
+        private String tokenCode;
 
-        public String StudentID
+        public String Id
         {
-            get { return this.studentId; }
-            set { this.studentId = value; }
+            get { return this.id; }
+            set { this.id = value; }
         }
 
         public String FirstName
@@ -33,20 +41,41 @@ namespace StudentManagement.DTO
             get { return this.lastName; }
             set { this.lastName = value; }
         }
+        public String Fullname
+        {
+            get { return this.fullname; }
+            set { this.fullname = value; }
+        }
+        public String Username
+        {
+            get { return this.username; }
+            set { this.username = value; }
+        }
+
+        public String Password
+        {
+            get { return this.password; }
+            set { this.password = value; }
+        }
         public DateTime Birthday
         {
             get { return this.birthday; }
             set { this.birthday = value; }
+        }
+        public int StartYear
+        {
+            get { return this.startYear; }
+            set { this.startYear = value; }
         }
         public String Gender
         {
             get { return this.gender; }
             set { this.gender = value; }
         }
-        public String Phone
+        public String PhoneNumber
         {
-            get { return this.phone; }
-            set { this.phone = value; }
+            get { return this.phoneNumber; }
+            set { this.phoneNumber = value; }
         }
         public String Address
         {
@@ -57,6 +86,21 @@ namespace StudentManagement.DTO
         {
             get { return this.picture; }
             set { this.picture = value; }
+        }
+        public JArray RegisterIds
+        {
+            get { return this.registerIds; }
+            set { this.registerIds = value; }
+        }
+        public String RoleCode
+        {
+            get { return this.roleCode; }
+            set { this.roleCode = value; }
+        }
+        public String TokenCode
+        {
+            get { return this.tokenCode; }
+            set { this.tokenCode = value; }
         }
     }
 }

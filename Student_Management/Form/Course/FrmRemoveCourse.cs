@@ -26,13 +26,13 @@ namespace StudentManagement
             if (txbCourseId.Text.Trim() == "")
                 return;
 
-            String url = "http://localhost:8081/api/course/" + txbCourseId.Text.Trim();
+            String url = "http://localhost:8081/api/section_class/" + txbCourseId.Text.Trim();
 
             JObject jObject = HttpUtils.DeleteRequest(url, Globals.TokenCode, null);
-            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+            SectionClassDTO sectionClassDto = DTOMapper.GetInstance().Map<SectionClassDTO>(jObject);
 
-            if (courseDto != null)
-                lbStatus.Text = courseDto.Message;
+            if (sectionClassDto != null)
+                lbStatus.Text = sectionClassDto.Message;
             else
                 lbStatus.Text = "Something's wrong.";
         }

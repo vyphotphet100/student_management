@@ -52,14 +52,14 @@ namespace StudentManagement
                 string url = @"http://localhost:8081/login";
                 var data = new Dictionary<String, Object>
                 {
-                    { "userName", txbUsername.Text },
+                    { "username", txbUsername.Text },
                     { "password", txbPassword.Text }
                 };
-                UserDTO userDto = DTOMapper.GetInstance().Map<UserDTO>(HttpUtils.PostRequest(url, null, data));
-                lbStatus.Text = userDto.Message;
-                if (userDto.HttpStatus == "OK")
+                EducationTrainingDTO educationTrainingDto = DTOMapper.GetInstance().Map<EducationTrainingDTO>(HttpUtils.PostRequest(url, null, data));
+                lbStatus.Text = educationTrainingDto.Message;
+                if (educationTrainingDto.HttpStatus == "OK")
                 {
-                    Globals.TokenCode = userDto.TokenCode;
+                    Globals.TokenCode = educationTrainingDto.TokenCode;
                     this.Hide();
                     FrmMain frmMain = new FrmMain();
                     DialogResult dr = frmMain.ShowDialog(this);

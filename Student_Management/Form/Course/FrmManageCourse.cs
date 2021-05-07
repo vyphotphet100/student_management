@@ -18,42 +18,42 @@ namespace StudentManagement
 {
     public partial class FrmManageCourse : Form
     {
-        private List<CourseDTO> courseDTOs;
+        private List<SectionClassDTO> sectionClassDtos;
 
         public FrmManageCourse()
         {
             InitializeComponent();
-            courseDTOs = loadCourse();
-            addCourseToLbxCourse(courseDTOs);
+            sectionClassDtos = loadCourse();
+            addCourseToLbxCourse(sectionClassDtos);
         }
 
-        private List<CourseDTO> loadCourse()
+        private List<SectionClassDTO> loadCourse()
         {
-            String url = "http://localhost:8081/api/course";
+            String url = "http://localhost:8081/api/section_class";
 
             JObject jObject = HttpUtils.GetRequest(url, Globals.TokenCode, null);
-            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+            SectionClassDTO sectionClassDto = DTOMapper.GetInstance().Map<SectionClassDTO>(jObject);
 
-            if (courseDto == null)
+            if (sectionClassDto == null)
             {
                 lbStatus.Text = "Something's wrong.";
                 return null;
             }
 
-            List<CourseDTO> lRes = new List<CourseDTO>();
-            for (int i = 0; i < courseDto.ListResult.Count; i++)
-                lRes.Add((CourseDTO)courseDto.ListResult[i]);
+            List<SectionClassDTO> lRes = new List<SectionClassDTO>();
+            for (int i = 0; i < sectionClassDto.ListResult.Count; i++)
+                lRes.Add((SectionClassDTO)DTOMapper.GetInstance().Map<SectionClassDTO>(sectionClassDto.ListResult[i].ToObject<JObject>()));
 
             return lRes;
         }
 
-        private void addCourseToLbxCourse(List<CourseDTO> courseDtos)
+        private void addCourseToLbxCourse(List<SectionClassDTO> sectionClassDto)
         {
             lbxCourse.Items.Clear();
-            for (int i = 0; i < courseDtos.Count; i++)
-                lbxCourse.Items.Add(courseDtos[i].Label);
+            for (int i = 0; i < sectionClassDto.Count; i++)
+                lbxCourse.Items.Add(sectionClassDto[i].Name);
 
-            lbTotalCourse.Text = "Total course(s): " + courseDtos.Count;
+            lbTotalCourse.Text = "Total course(s): " + sectionClassDto.Count;
         }
 
         private void btnToPrinter_Click(object sender, EventArgs e)
@@ -182,12 +182,12 @@ namespace StudentManagement
 
         private void showData (int index)
         {
-            CourseDTO courseDto = courseDTOs[index];
+            SectionClassDTO sectionClassDto = sectionClassDtos[index];
 
-            txbID.Text = courseDto.CourseId;
-            txbLabel.Text = courseDto.Label;
-            nUDPeriod.Value = courseDto.Period;
-            txbDescription.Text = courseDto.Description;
+            txbID.Text = sectionClassDto.Id;
+            txbLabel.Text = sectionClassDto.Name;
+            nUDPeriod.Value = sectionClassDto.Period;
+            txbDescription.Text = sectionClassDto.Description;
         }
 
         private void btnFirst_Click(object sender, EventArgs e)
@@ -203,13 +203,13 @@ namespace StudentManagement
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (lbxCourse.SelectedIndex != courseDTOs.Count-1)
+            if (lbxCourse.SelectedIndex != sectionClassDtos.Count-1)
                 lbxCourse.SetSelected(lbxCourse.SelectedIndex + 1, true);
         }
 
         private void btnLast_Click(object sender, EventArgs e)
         {
-            lbxCourse.SetSelected(courseDTOs.Count - 1, true);
+            lbxCourse.SetSelected(sectionClassDtos.Count - 1, true);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -217,13 +217,24 @@ namespace StudentManagement
             if (!verify())
                 return;
 
-            String url = "http://localhost:8081/api/course";
+            String url = "http://localhost:8081/api/section_class";
+
+            // get course id
+            String courseId = "";
+            for (int i = 0; i < txbID.Text.Length; i++)
+                if (txbID.Text[i] != '_')
+                    courseId += txbID.Text[i];
+                else
+                    break;
+
 
             var data = new Dictionary<String, Object>
             {
-                { "courseId", txbID.Text },
-                { "label", txbLabel.Text },
+                { "id", txbID.Text },
+                { "name", txbLabel.Text },
                 { "period", nUDPeriod.Value },
+                { "courseId", courseId },
+                { "room", "A3-305" },
                 { "description", txbDescription.Text }
             };
             JObject jObject = HttpUtils.PostRequest(url, Globals.TokenCode, data);
@@ -234,34 +245,51 @@ namespace StudentManagement
             else
                 lbStatus.Text = "Something's wrong.";
 
-            courseDTOs = loadCourse();
-            addCourseToLbxCourse(courseDTOs);
+            sectionClassDtos = loadCourse();
+            addCourseToLbxCourse(sectionClassDtos);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (!verify())
-                return;
+            // get current section class
+            String urlGet = "http://localhost:8081/api/section_class/" + txbID.Text;
 
-            String url = "http://localhost:8081/api/course";
+            JObject jObjectGet = HttpUtils.GetRequest(urlGet, Globals.TokenCode, null);
+            SectionClassDTO sectionClassDtoGet = DTOMapper.GetInstance().Map<SectionClassDTO>(jObjectGet);
+
+            // edit current seciton class
+            String urlEdit = "http://localhost:8081/api/section_class";
+
+            // get course id
+            String courseId = "";
+            for (int i = 0; i < txbID.Text.Length; i++)
+                if (txbID.Text[i] != '_')
+                    courseId += txbID.Text[i];
+                else
+                    break;
 
             var data = new Dictionary<String, Object>
             {
-                { "courseId", txbID.Text },
-                { "label", txbLabel.Text },
+                { "id", txbID.Text },
+                { "name", txbLabel.Text },
+                { "startTime", sectionClassDtoGet.StartTime },
+                { "endTime", sectionClassDtoGet.EndTime },
                 { "period", nUDPeriod.Text },
+                { "courseId", courseId },
+                { "lecturerId", sectionClassDtoGet.LecturerId },
+                { "room", sectionClassDtoGet.Room },
                 { "description", txbDescription.Text }
             };
-            JObject jObject = HttpUtils.PutRequest(url, Globals.TokenCode, data);
-            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+            JObject jObjectEdit = HttpUtils.PutRequest(urlEdit, Globals.TokenCode, data);
+            SectionClassDTO sectionClassDtoEdit = DTOMapper.GetInstance().Map<SectionClassDTO>(jObjectEdit);
 
-            if (courseDto != null)
-                lbStatus.Text = courseDto.Message;
+            if (sectionClassDtoEdit != null)
+                lbStatus.Text = sectionClassDtoEdit.Message;
             else
                 lbStatus.Text = "Something's wrong.";
 
-            courseDTOs = loadCourse();
-            addCourseToLbxCourse(courseDTOs);
+            sectionClassDtos = loadCourse();
+            addCourseToLbxCourse(sectionClassDtos);
         }
 
         private Boolean verify()
@@ -278,18 +306,15 @@ namespace StudentManagement
             if (txbID.Text.Trim() == "")
                 return;
 
-            String url = "http://localhost:8081/api/course/" + txbID.Text.Trim();
+            String url = "http://localhost:8081/api/section_class/" + txbID.Text.Trim();
 
             JObject jObject = HttpUtils.DeleteRequest(url, Globals.TokenCode, null);
-            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+            SectionClassDTO sectionClassDto = DTOMapper.GetInstance().Map<SectionClassDTO>(jObject);
 
-            if (courseDto != null)
-                lbStatus.Text = courseDto.Message;
+            if (sectionClassDto != null)
+                lbStatus.Text = sectionClassDto.Message;
             else
                 lbStatus.Text = "Something's wrong.";
-
-            courseDTOs = loadCourse();
-            addCourseToLbxCourse(courseDTOs);
         }
     }
 }

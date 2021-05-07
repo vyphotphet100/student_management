@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.dataCourse = new System.Windows.Forms.DataGridView();
-            this.btnToFile = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.colCourseId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLabel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPeriod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDesciption = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnToFile = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataCourse)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,24 +58,6 @@
             this.dataCourse.ReadOnly = true;
             this.dataCourse.Size = new System.Drawing.Size(611, 371);
             this.dataCourse.TabIndex = 0;
-            // 
-            // btnToFile
-            // 
-            this.btnToFile.Location = new System.Drawing.Point(12, 389);
-            this.btnToFile.Name = "btnToFile";
-            this.btnToFile.Size = new System.Drawing.Size(75, 23);
-            this.btnToFile.TabIndex = 1;
-            this.btnToFile.Text = "To file";
-            this.btnToFile.UseVisualStyleBackColor = true;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Location = new System.Drawing.Point(93, 389);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(75, 23);
-            this.btnPrint.TabIndex = 1;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // colCourseId
             // 
@@ -104,6 +87,26 @@
             this.colDesciption.Name = "colDesciption";
             this.colDesciption.ReadOnly = true;
             // 
+            // btnToFile
+            // 
+            this.btnToFile.Location = new System.Drawing.Point(12, 389);
+            this.btnToFile.Name = "btnToFile";
+            this.btnToFile.Size = new System.Drawing.Size(75, 23);
+            this.btnToFile.TabIndex = 1;
+            this.btnToFile.Text = "To file";
+            this.btnToFile.UseVisualStyleBackColor = true;
+            this.btnToFile.Click += new System.EventHandler(this.btnToFile_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(93, 389);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 1;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -127,11 +130,21 @@
             this.lbStatus.Size = new System.Drawing.Size(16, 17);
             this.lbStatus.Text = "...";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(500, 408);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(135, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "19110143_Cao Đinh Sỹ Vỹ";
+            // 
             // FrmPrintCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(635, 443);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnToFile);
@@ -158,5 +171,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lbStatus;
+        private System.Windows.Forms.Label label1;
     }
 }

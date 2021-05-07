@@ -57,12 +57,12 @@ namespace StudentManagement
                     rBtnFemale.Checked = true;
                 }
 
-                txbPhone.Text = studentDto.Phone;
+                txbPhone.Text = studentDto.PhoneNumber;
                 txbAddress.Text = studentDto.Address;
 
                 // picture
                 WebClient client = new WebClient();
-                byte[] bitmap = client.DownloadData(@"http://localhost:8081" + studentDto.Picture);
+                byte[] bitmap = client.DownloadData(@"http://localhost:8081" + studentDto.Picture + "?option=getFile");
                 Image image = Image.FromStream(new MemoryStream(bitmap));
                 picAvatar.Image = image;
             }
@@ -82,9 +82,19 @@ namespace StudentManagement
         {
             if (!verify())
                 return;
+            var studentAvaData = new Dictionary<String, Object>
+            {
+                { "fileName", txbId.Text + "/avatar" },
+                { "fileType", "png" },
+                { "base64String", PictureUtils.GetInstance().ToBase64String(picAvatar) }
+            };
+            StudentDTO studentAvaDto = DTOMapper.GetInstance().Map<StudentDTO>(HttpUtils.PutRequest("http://localhost:8081/api/file/student", Globals.TokenCode, studentAvaData));
 
-            StudentDTO studentDtoAva = DTOMapper.GetInstance().Map<StudentDTO>(StudentFile.upAvatar("http://localhost:8081", 
-                Globals.TokenCode, picAvatar, txbId.Text));
+            if (studentAvaDto.HttpStatus != "OK")
+            {
+                lbStatus.Text = "Something's wrong.";
+                return;
+            }
 
             String url = "http://localhost:8081/api/student";
 
@@ -95,18 +105,22 @@ namespace StudentManagement
             else
                 genderStr = "Female";
 
-            var data = new Dictionary<String, Object>
+            var dataAddStudent = new Dictionary<String, Object>
             {
-                { "studentId", txbId.Text },
-                { "firstName", txbFname.Text },
-                { "lastName", txbLname.Text },
+                { "id" , txbId.Text},
+                { "username" , txbId.Text },
+                { "password" , txbId.Text },
+                { "firstName" , txbFname.Text },
+                { "lastName" , txbLname.Text },
+                { "fullname" , txbFname.Text.Trim() + " " +  txbLname.Text.Trim() },
                 { "birthday", datmBirthday.Value.ToString("yyyy-MM-dd") },
-                { "gender", genderStr },
-                { "phone", txbPhone.Text },
+                { "gender" , genderStr },
+                { "phoneNumber", txbPhone.Text },
                 { "address", txbAddress.Text },
-                { "picture", studentDtoAva.Picture }
+                { "startYear", DateTime.Now.Year },
+                { "picture", studentAvaDto.ListResult[0].ToObject<String>() }
             };
-            JObject jObject = HttpUtils.PutRequest(url, Globals.TokenCode, data);
+            JObject jObject = HttpUtils.PutRequest(url, Globals.TokenCode, dataAddStudent);
             StudentDTO studentDto = DTOMapper.GetInstance().Map<StudentDTO>(jObject);
 
             if (studentDto != null)

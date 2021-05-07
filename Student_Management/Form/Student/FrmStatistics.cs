@@ -33,7 +33,7 @@ namespace StudentManagement
             if (responseDto.HttpStatus == "OK")
                 for (int i = 0; i < responseDto.ListResult.Count; i++)
                 {
-                    String gender = ((StudentDTO)responseDto.ListResult[i]).Gender;
+                    String gender = (String)responseDto.ListResult[i]["gender"];
                     if (gender == "Male")
                         nMale++;
                     else
@@ -42,6 +42,7 @@ namespace StudentManagement
 
             chart1.Series["p1"].Points.AddXY("Male", nMale);
             chart1.Series["p1"].Points.AddXY("Female", nFemale);
+            lbSumOfStudent.Text += (nMale + nFemale).ToString();
         }
     }
 }

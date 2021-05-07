@@ -40,7 +40,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 51);
+            this.label1.Location = new System.Drawing.Point(35, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 13);
             this.label1.TabIndex = 0;
@@ -48,14 +48,14 @@
             // 
             // txbCourseId
             // 
-            this.txbCourseId.Location = new System.Drawing.Point(143, 48);
+            this.txbCourseId.Location = new System.Drawing.Point(143, 39);
             this.txbCourseId.Name = "txbCourseId";
             this.txbCourseId.Size = new System.Drawing.Size(125, 20);
             this.txbCourseId.TabIndex = 1;
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(283, 46);
+            this.btnRemove.Location = new System.Drawing.Point(283, 37);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 2;

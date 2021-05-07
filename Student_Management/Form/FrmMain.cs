@@ -69,5 +69,23 @@ namespace StudentManagement
             FrmUpdateDeleteStudent frmUpdateDeleteStudent = new FrmUpdateDeleteStudent("0");
             frmUpdateDeleteStudent.ShowDialog(this);
         }
+
+        private void printToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmPrintCourse frmPrintCourse = new FrmPrintCourse();
+            frmPrintCourse.ShowDialog(this);
+        }
+
+        private void studentManagementFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStudentManagement frmStudentManagement = new FrmStudentManagement();
+            frmStudentManagement.ShowDialog(this);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStudentManagement frmStudentManagement = new FrmStudentManagement();
+            frmStudentManagement.btnToPrinter_Click(new object(), new EventArgs());
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,22 +7,18 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.DTO
 {
-    public class AbstractDTO<T>
+    public class AbstractDTO
     {
-        private long id;
         private DateTime createdDate;
         private DateTime modifiedDate;
         private String createdBy;
         private String modifiedBy;
-        private List<Object> listResult = new List<Object>();
+
+        private JArray listResult;
+        private JArray listRequest;
         private String message;
         private String httpStatus;
 
-        public long Id
-        {
-            get { return this.id; }
-            set { this.id = value; }
-        }
 
         public DateTime CreatedDate
         {
@@ -47,10 +44,16 @@ namespace StudentManagement.DTO
             set { this.modifiedBy = value; }
         }
 
-        public List<Object> ListResult
+        public JArray ListResult
         {
             get { return this.listResult; }
             set { this.listResult = value; }
+        }
+
+        public JArray ListRequest
+        {
+            get { return this.listRequest; }
+            set { this.listRequest = value; }
         }
 
         public String Message
@@ -63,48 +66,6 @@ namespace StudentManagement.DTO
             get { return this.httpStatus; }
             set { this.httpStatus = value; }
         }
-
-
-        public UserDTO ToUserDTO()
-        {
-            UserDTO userDto = new UserDTO();
-            userDto.Id = this.id;
-            userDto.CreatedDate = this.createdDate;
-            userDto.CreatedBy = this.createdBy;
-            userDto.ModifiedBy = this.modifiedBy;
-            userDto.ModifiedDate = this.modifiedDate;
-            userDto.ListResult = this.listResult;
-            userDto.Message = this.message;
-            userDto.HttpStatus = this.httpStatus;
-            return userDto;
-        }
-
-        public StudentDTO ToStudentDTO()
-        {
-            StudentDTO studentDto = new StudentDTO();
-            studentDto.Id = this.id;
-            studentDto.CreatedDate = this.createdDate;
-            studentDto.CreatedBy = this.createdBy;
-            studentDto.ModifiedBy = this.modifiedBy;
-            studentDto.ModifiedDate = this.modifiedDate;
-            studentDto.ListResult = this.listResult;
-            studentDto.Message = this.message;
-            studentDto.HttpStatus = this.httpStatus;
-            return studentDto;
-        }
-
-        public CourseDTO ToCourseDTO()
-        {
-            CourseDTO courseDto = new CourseDTO();
-            courseDto.Id = this.id;
-            courseDto.CreatedDate = this.createdDate;
-            courseDto.CreatedBy = this.createdBy;
-            courseDto.ModifiedBy = this.modifiedBy;
-            courseDto.ModifiedDate = this.modifiedDate;
-            courseDto.ListResult = this.listResult;
-            courseDto.Message = this.message;
-            courseDto.HttpStatus = this.httpStatus;
-            return courseDto;
-        }
+        
     }
 }

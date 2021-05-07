@@ -19,66 +19,86 @@ namespace StudentManagement
         public FrmEditCourse()
         {
             InitializeComponent();
-            List<CourseDTO> courseDtos = loadListCourse();
-            for (int i = 0; i < courseDtos.Count; i++)
-                cbxCourses.Items.Add(courseDtos[i].CourseId);
+            List<SectionClassDTO> sectionClassDtos = loadListCourse();
+            for (int i = 0; i < sectionClassDtos.Count; i++)
+                cbxCourses.Items.Add(sectionClassDtos[i].Id);
         }
 
-        List<CourseDTO> loadListCourse()
+        List<SectionClassDTO> loadListCourse()
         {
-            String url = "http://localhost:8081/api/course";
+            String url = "http://localhost:8081/api/section_class";
 
             JObject jObject = HttpUtils.GetRequest(url, Globals.TokenCode, null);
-            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+            SectionClassDTO sectionClassDto = DTOMapper.GetInstance().Map<SectionClassDTO>(jObject);
 
-            if (courseDto == null)
+            if (sectionClassDto == null)
             {
                 lbStatus.Text = "Something's wrong.";
                 return null;
             }
 
-            List<CourseDTO> lRes = new List<CourseDTO>();
-            for (int i = 0; i < courseDto.ListResult.Count; i++)
-                lRes.Add((CourseDTO)courseDto.ListResult[i]);
+            List<SectionClassDTO> lRes = new List<SectionClassDTO>();
+            for (int i = 0; i < sectionClassDto.ListResult.Count; i++)
+                lRes.Add(DTOMapper.GetInstance().Map<SectionClassDTO>(sectionClassDto.ListResult[i].ToObject<JObject>()));
 
             return lRes;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            String url = "http://localhost:8081/api/course";
+            // get current section class
+            String urlGet = "http://localhost:8081/api/section_class/" + cbxCourses.Text;
+
+            JObject jObjectGet = HttpUtils.GetRequest(urlGet, Globals.TokenCode, null);
+            SectionClassDTO sectionClassDtoGet = DTOMapper.GetInstance().Map<SectionClassDTO>(jObjectGet);
+
+            // edit current seciton class
+            String urlEdit = "http://localhost:8081/api/section_class";
+
+            // get course id
+            String courseId = "";
+            for (int i = 0; i < cbxCourses.Text.Length; i++)
+                if (cbxCourses.Text[i] != '_')
+                    courseId += cbxCourses.Text[i];
+                else
+                    break;
 
             var data = new Dictionary<String, Object>
             {
-                { "courseId", cbxCourses.Text },
-                { "label", txbLabel.Text },
+                { "id", cbxCourses.Text },
+                { "name", txbLabel.Text },
+                { "startTime", sectionClassDtoGet.StartTime },
+                { "endTime", sectionClassDtoGet.EndTime },
                 { "period", nUDPeriod.Text },
+                { "courseId", courseId },
+                { "lecturerId", sectionClassDtoGet.LecturerId },
+                { "room", sectionClassDtoGet.Room },
                 { "description", txbDescription.Text }
             };
-            JObject jObject = HttpUtils.PutRequest(url, Globals.TokenCode, data);
-            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+            JObject jObjectEdit = HttpUtils.PutRequest(urlEdit, Globals.TokenCode, data);
+            SectionClassDTO sectionClassDtoEdit = DTOMapper.GetInstance().Map<SectionClassDTO>(jObjectEdit);
 
-            if (courseDto != null)
-                lbStatus.Text = courseDto.Message;
+            if (sectionClassDtoEdit != null)
+                lbStatus.Text = sectionClassDtoEdit.Message;
             else
                 lbStatus.Text = "Something's wrong.";
         }
 
         private void cbxCourses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String url = "http://localhost:8081/api/course/" + cbxCourses.Text;
+            String url = "http://localhost:8081/api/section_class/" + cbxCourses.Text;
 
             JObject jObject = HttpUtils.GetRequest(url, Globals.TokenCode, null);
-            CourseDTO courseDto = DTOMapper.GetInstance().Map<CourseDTO>(jObject);
+            SectionClassDTO sectionClassDto = DTOMapper.GetInstance().Map<SectionClassDTO>(jObject);
 
-            if (courseDto != null)
+            if (sectionClassDto != null)
             {
-                lbStatus.Text = courseDto.Message;
-                if (courseDto.HttpStatus == "OK")
+                lbStatus.Text = sectionClassDto.Message;
+                if (sectionClassDto.HttpStatus == "OK")
                 {
-                    txbLabel.Text = courseDto.Label;
-                    nUDPeriod.Value = courseDto.Period;
-                    txbDescription.Text = courseDto.Description;
+                    txbLabel.Text = sectionClassDto.Name;
+                    nUDPeriod.Value = sectionClassDto.Period;
+                    txbDescription.Text = sectionClassDto.Description;
                 }
             }
             else

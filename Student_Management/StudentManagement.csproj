@@ -66,8 +66,14 @@
   <ItemGroup>
     <Compile Include="DTO\AbstractDTO.cs" />
     <Compile Include="DTO\CourseDTO.cs" />
+    <Compile Include="DTO\EducationTrainingDTO.cs" />
+    <Compile Include="DTO\LecturerDTO.cs" />
+    <Compile Include="DTO\NotificationDTO.cs" />
+    <Compile Include="DTO\RegisterDTO.cs" />
     <Compile Include="DTO\RoleDTO.cs" />
+    <Compile Include="DTO\SectionClassDTO.cs" />
     <Compile Include="DTO\StudentDTO.cs" />
+    <Compile Include="DTO\MyFileDTO.cs" />
     <Compile Include="File\StudentFile.cs" />
     <Compile Include="Form\FrmAddUser.cs">
       <SubType>Form</SubType>
@@ -75,11 +81,11 @@
     <Compile Include="Form\FrmAddUser.Designer.cs">
       <DependentUpon>FrmAddUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Student\FrmStudentList.cs">
+    <Compile Include="Form\Student\FrmStudentManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\Student\FrmStudentList.Designer.cs">
-      <DependentUpon>FrmStudentList.cs</DependentUpon>
+    <Compile Include="Form\Student\FrmStudentManagement.Designer.cs">
+      <DependentUpon>FrmStudentManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Form\Student\FrmUpdateDeleteStudent.cs">
       <SubType>Form</SubType>
@@ -123,6 +129,12 @@
     <Compile Include="Form\Course\FrmPrintCourse.Designer.cs">
       <DependentUpon>FrmPrintCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Student\FrmStudentList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Student\FrmStudentList.Designer.cs">
+      <DependentUpon>FrmStudentList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Form\Student\FrmAddStudent.cs">
       <SubType>Form</SubType>
@@ -138,7 +150,6 @@
     </Compile>
     <Compile Include="Utils\HttpUtils.cs" />
     <Compile Include="MapperUtils\DTOMapper.cs" />
-    <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Form\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,8 +177,8 @@
     <EmbeddedResource Include="Form\Student\FrmStatistics.resx">
       <DependentUpon>FrmStatistics.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\Student\FrmStudentList.resx">
-      <DependentUpon>FrmStudentList.cs</DependentUpon>
+    <EmbeddedResource Include="Form\Student\FrmStudentManagement.resx">
+      <DependentUpon>FrmStudentManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Student\FrmUpdateDeleteStudent.resx">
       <DependentUpon>FrmUpdateDeleteStudent.cs</DependentUpon>
@@ -183,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Course\FrmManageCourse.resx">
       <DependentUpon>FrmManageCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Student\FrmStudentList.resx">
+      <DependentUpon>FrmStudentList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

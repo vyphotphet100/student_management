@@ -39,12 +39,8 @@ namespace StudentManagement
                 { "roleCodes", lRole }
             };
             JObject jObject = HttpUtils.PostRequest(url, Globals.TokenCode, data);
-            UserDTO userDto = DTOMapper.GetInstance().Map<UserDTO>(jObject);
 
-            if (userDto != null)
-                lbStatus.Text = userDto.Message;
-            else
-                lbStatus.Text = "Something wrong.";
+            lbStatus.Text = (String)jObject["message"];
         }
 
         private bool verify()

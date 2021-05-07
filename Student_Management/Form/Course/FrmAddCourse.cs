@@ -26,13 +26,24 @@ namespace StudentManagement
             if (!verify())
                 return;
 
-            String url = "http://localhost:8081/api/course";
+            String url = "http://localhost:8081/api/section_class";
+
+            // get course id
+            String courseId = "";
+            for (int i = 0; i < txbCourseID.Text.Length; i++)
+                if (txbCourseID.Text[i] != '_')
+                    courseId += txbCourseID.Text[i];
+                else
+                    break;
+
 
             var data = new Dictionary<String, Object>
             {
-                { "courseId", txbCourseID.Text },
-                { "label", txbLabel.Text },
+                { "id", txbCourseID.Text },
+                { "name", txbLabel.Text },
                 { "period", txbPeriod.Text },
+                { "courseId", courseId },
+                { "room", "A3-305" },
                 { "description", txbDescription.Text }
             };
             JObject jObject = HttpUtils.PostRequest(url, Globals.TokenCode, data);

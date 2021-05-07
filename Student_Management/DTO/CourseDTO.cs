@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,24 +7,26 @@ using System.Threading.Tasks;
 
 namespace StudentManagement.DTO
 {
-    public class CourseDTO: AbstractDTO<CourseDTO>
+    public class CourseDTO: AbstractDTO
     {
-        private String courseId;
-        private String label;
+        private String id;
+        private String name;
         private int period;
         private String description;
-        private List<long> scoreIds = new List<long>();
+        private int numberOfCredit;
+        private long fee;
+        private JArray sectionClassIds;
 
-        public String CourseId
+        public String Id
         {
-            get { return this.courseId; }
-            set { this.courseId = value; }
+            get { return this.id; }
+            set { this.id = value; }
         }
 
-        public String Label
+        public String Name
         {
-            get { return this.label; }
-            set { this.label = value; }
+            get { return this.name; }
+            set { this.name = value; }
         }
 
         public int Period
@@ -38,10 +41,22 @@ namespace StudentManagement.DTO
             set { this.description = value; }
         }
 
-        public List<long> ScoreIds
+        public int NumberOfCredit
         {
-            get { return this.scoreIds; }
-            set { this.scoreIds = value; }
+            get { return this.numberOfCredit; }
+            set { this.numberOfCredit = value; }
+        }
+
+        public long Fee
+        {
+            get { return this.fee; }
+            set { this.fee = value; }
+        }
+
+        public JArray SectionClassIds
+        {
+            get { return this.sectionClassIds; }
+            set { this.sectionClassIds = value; }
         }
     }
 }
