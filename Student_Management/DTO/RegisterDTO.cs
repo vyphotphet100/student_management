@@ -13,6 +13,7 @@ namespace StudentManagement.DTO
         private String sectionClassId;
         private double midTermMark;
         private double endTermMark;
+        private String description;
 
         public long Id
         {
@@ -42,6 +43,12 @@ namespace StudentManagement.DTO
         {
             get { return this.endTermMark; }
             set { this.endTermMark = value; }
+        }
+
+        public String Description
+        {
+            get { return this.description; }
+            set { this.description = value; }
         }
     }
 }

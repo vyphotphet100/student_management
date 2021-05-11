@@ -140,8 +140,6 @@ namespace StudentManagement.MapperUtils
         {
             try { dto.Id = (String)jObj["id"]; } catch { }
             try { dto.Name = (String)jObj["name"]; } catch { }
-            try { dto.Period = (int)jObj["period"]; } catch { }
-            try { dto.Description = (String)jObj["description"]; } catch { }
             try { dto.NumberOfCredit = (int)jObj["numberOfCredit"]; } catch { }
             try { dto.Fee = (long)jObj["fee"]; } catch { }
             try { dto.SectionClassIds = (JArray)jObj["sectionClassIds"]; } catch { }
@@ -198,6 +196,7 @@ namespace StudentManagement.MapperUtils
             try { dto.SectionClassId = (String)jObj["sectionClassId"]; } catch { }
             try { dto.MidTermMark = (double)jObj["midTermMark"]; } catch { }
             try { dto.EndTermMark = (double)jObj["endTermMark"]; } catch { }
+            try { dto.Description = (String)jObj["description"]; } catch { }
 
             return dto;
         }

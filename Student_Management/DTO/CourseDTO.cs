@@ -11,8 +11,6 @@ namespace StudentManagement.DTO
     {
         private String id;
         private String name;
-        private int period;
-        private String description;
         private int numberOfCredit;
         private long fee;
         private JArray sectionClassIds;
@@ -27,18 +25,6 @@ namespace StudentManagement.DTO
         {
             get { return this.name; }
             set { this.name = value; }
-        }
-
-        public int Period
-        {
-            get { return this.period; }
-            set { this.period = value; }
-        }
-
-        public String Description
-        {
-            get { return this.description; }
-            set { this.description = value; }
         }
 
         public int NumberOfCredit

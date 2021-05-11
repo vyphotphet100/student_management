@@ -135,6 +135,36 @@
     <Compile Include="Form\Student\FrmStudentList.Designer.cs">
       <DependentUpon>FrmStudentList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\Score\FrmAddScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Score\FrmAddScore.Designer.cs">
+      <DependentUpon>FrmAddScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Score\FrmRemoveScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Score\FrmRemoveScore.Designer.cs">
+      <DependentUpon>FrmRemoveScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Score\FrmManageScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Score\FrmManageScore.Designer.cs">
+      <DependentUpon>FrmManageScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Result\FrmAverageResultByScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Result\FrmAverageResultByScore.Designer.cs">
+      <DependentUpon>FrmAverageResultByScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Result\FrmStatisticsResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\Result\FrmStatisticsResult.Designer.cs">
+      <DependentUpon>FrmStatisticsResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="Globals.cs" />
     <Compile Include="Form\Student\FrmAddStudent.cs">
       <SubType>Form</SubType>
@@ -197,6 +227,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form\Student\FrmStudentList.resx">
       <DependentUpon>FrmStudentList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Score\FrmAddScore.resx">
+      <DependentUpon>FrmAddScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Score\FrmRemoveScore.resx">
+      <DependentUpon>FrmRemoveScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Score\FrmManageScore.resx">
+      <DependentUpon>FrmManageScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Result\FrmAverageResultByScore.resx">
+      <DependentUpon>FrmAverageResultByScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\Result\FrmStatisticsResult.resx">
+      <DependentUpon>FrmStatisticsResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -87,5 +87,48 @@ namespace StudentManagement
             FrmStudentManagement frmStudentManagement = new FrmStudentManagement();
             frmStudentManagement.btnToPrinter_Click(new object(), new EventArgs());
         }
+
+        private void addScoreToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmAddScore frmAddScore = new FrmAddScore();
+            frmAddScore.ShowDialog(this);
+        }
+
+        private void removeScoreToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmRemoveScore frmRemoveScore = new FrmRemoveScore();
+            frmRemoveScore.ShowDialog(this);
+        }
+
+        private void manageScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageScore frmManageScore = new FrmManageScore();
+            frmManageScore.ShowDialog(this);
+        }
+
+        private void averageScoreByCourseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageScore frmManageScore = new FrmManageScore();
+            frmManageScore.btnAverage_Click(new object(), new EventArgs());
+            frmManageScore.ShowDialog(this);
+        }
+
+        private void printResultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageScore frmManageScore = new FrmManageScore();
+            frmManageScore.btnPrint_Click(new object(), new EventArgs());
+        }
+
+        private void averageResultByScoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAverageResultByScore frmAverageResultByScore = new FrmAverageResultByScore();
+            frmAverageResultByScore.ShowDialog(this);
+        }
+
+        private void statisticResultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmStatisticsResult frmStatisticsResult = new FrmStatisticsResult();
+            frmStatisticsResult.ShowDialog(this);
+        }
     }
 }
