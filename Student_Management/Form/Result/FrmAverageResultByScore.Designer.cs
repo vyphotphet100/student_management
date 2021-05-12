@@ -190,6 +190,7 @@
             this.btnPrint.TabIndex = 1;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnCancel
             // 
@@ -199,6 +200,7 @@
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // statusStrip1
             // 

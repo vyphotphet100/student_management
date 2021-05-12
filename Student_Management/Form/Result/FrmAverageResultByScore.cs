@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.Office.Interop.Word;
+using Newtonsoft.Json.Linq;
 using StudentManagement.DTO;
 using StudentManagement.MapperUtils;
 using StudentManagement.Utils;
@@ -7,7 +8,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -180,6 +183,43 @@ namespace StudentManagement
                 txbFirstName.Text = dataStudentResult.Rows[dataStudentResult.CurrentCell.RowIndex].Cells[1].Value.ToString();
                 txbLastName.Text = dataStudentResult.Rows[dataStudentResult.CurrentCell.RowIndex].Cells[2].Value.ToString();
             }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (txbStudentID.Text.Trim() == "")
+            {
+                lbStatus.Text = "You did not choose student.";
+                return;
+            }
+
+            String url = "http://localhost:8081/api/file/student/"+ txbStudentID.Text +"?option=printResult";
+
+            JObject jObject = HttpUtils.GetRequest(url, Globals.TokenCode, null);
+            StudentDTO studentDto = DTOMapper.GetInstance().Map<StudentDTO>(jObject);
+
+            if (studentDto.HttpStatus == "OK")
+            {
+                url = "http://localhost:8081" + studentDto.ListResult[0].ToObject<String>() + "?option=getFile";
+
+                var client = new WebClient();
+                string dir = @"sources\student\" + txbStudentID.Text;
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+
+                client.DownloadFile(url, dir + @"\result.docx");
+
+            }
+
+            Microsoft.Office.Interop.Word.Application ap = new Microsoft.Office.Interop.Word.Application();
+            Document document = ap.Documents.Open(System.Windows.Forms.Application.StartupPath + @"\sources\student\"+ txbStudentID.Text + @"\result.docx");
+            ap.Visible = true;
+            document.PrintPreview();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
